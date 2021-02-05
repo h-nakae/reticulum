@@ -45,15 +45,15 @@ Run `scripts/run.sh` if you have the hubs secret repo cloned. Otherwise `iex -S 
 
 [Install NodeJS](https://nodejs.org) if you haven't already. We recommend version 12 or above.
 
-### 1. Setup the `hubs.local` hostname
+### 1. Setup the `hubs-local.com` hostname
 
-When running the full stack for Hubs (which includes Reticulum) locally it is necessary to add a `hosts` entry pointing `hubs.local` to your local server's IP.
-This will allow the CSP checks to pass that are served up by Reticulum so you can test the whole app. Note that you must also load hubs.local over https.
+When running the full stack for Hubs (which includes Reticulum) locally it is necessary to add a `hosts` entry pointing `hubs-local.com` to your local server's IP.
+This will allow the CSP checks to pass that are served up by Reticulum so you can test the whole app. Note that you must also load hubs-local.com over https.
 
 Example:
 
 ```
-hubs.local 127.0.0.1
+hubs-local.com 127.0.0.1
 ```
 
 ### 2. Setting up the Hubs Repository
@@ -74,7 +74,7 @@ Because we are running Hubs against the local Reticulum client you'll need to us
 
 Once both the Hubs Webpack Dev Server and Reticulum server are both running you can navigate to the client by opening up:
 
-https://hubs.local:4000?skipadmin
+https://hubs-local.com:4000?skipadmin
 
 > The `skipadmin` is a temporary measure to bypass being redirected to the admin panel. Once you have logged in you will no longer need this.
 
@@ -84,7 +84,7 @@ To log into Hubs we use magic links that are sent to your email. When you are ru
 
 With the Hubs landing page open click the Sign In button at the top of the page. Enter an email address and click send.
 
-Go to the reticulum terminal session and find a url that looks like https://hubs.local:4000/?auth_origin=hubs&auth_payload=XXXXX&auth_token=XXXX
+Go to the reticulum terminal session and find a url that looks like https://hubs-local.com:4000/?auth_origin=hubs&auth_payload=XXXXX&auth_token=XXXX
 
 Navigate to that url in your browser to finish signing in.
 
@@ -100,13 +100,13 @@ Ret.Account |> Ret.Repo.all() |> Enum.at(0) |> Ecto.Changeset.change(is_admin: t
 
 1. Follow the steps above to setup Hubs
 2. Clone and start spoke by running `./scripts/run_local_reticulum.sh` in the root of the spoke project
-3. Navigate to https://hubs.local:4000/spoke
+3. Navigate to https://hubs-local.com:4000/spoke
 
 ## Run Reticulum against a local Dialog instance
 
 1. Update the Janus host in `dev.exs`: 
 ```
-dev_janus_host = "hubs.local"
+dev_janus_host = "hubs-local.com"
 ```
 1. Update the Janus port in `dev.exs`:
 ```
@@ -123,7 +123,7 @@ default_janus_csp_rule =
 
 4. Edit the Dialog configuration file *turnserver.conf* and update the PostgreSQL database connection string to use the *coturn* schema from the Reticulum database:
 ```
-   psql-userdb="host=hubs.local dbname=ret_dev user=postgres password=postgres options='-c search_path=coturn' connect_timeout=30"
+   psql-userdb="host=hubs-local.com dbname=ret_dev user=postgres password=postgres options='-c search_path=coturn' connect_timeout=30"
 ```
 
 
